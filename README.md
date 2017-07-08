@@ -1,5 +1,5 @@
 # Description
-This script is generally used to rate limit traffic from certain IPs based on its domain name. Specifically, it is written to limit download traffic from Fshare (a popular storage provider in Vietnam). It's using ```scapy``` to capture DNS traffic and [Linux HTB](http://lartc.org/manpages/tc-htb.html) for traffic control. Feel free to modify the code to suit your needs.
+This script is generally used to rate limit traffic from certain IPs based on its domain name. Specifically, it is written to limit download traffic from Fshare (a popular storage provider in Vietnam). It's using [scapy](https://pypi.python.org/pypi/scapy) to capture DNS traffic and [Linux HTB](http://lartc.org/manpages/tc-htb.html) for traffic control. Feel free to modify the code to suit your needs.
 
 # Installation
 Install the scapy module:
@@ -28,3 +28,33 @@ optional arguments:
   -rate       rate at which to limit traffic (mbit)
 ```
 
+Inside the code, I set the timeout for sniff function to 32400 seconds (9 hours), with the purpose of schedule the script to run at 9:00 every morning. Therefore, we only rate limit traffic during working hours (from 9:00 to 18:00).
+
+If you just want to collect IP addresses of Fshare servers, type **crontab -e** and add this line to the file:
+```
+0 9 * * 1-5 ./scripts/rate_limit.py fshare
+```
+
+Check out ```/root/iplist/fshare.py``` to see list of IP addresses being collected:
+```
+# cat /root/iplist/fshare.py
+servers = ['118.69.215.69',
+ '118.69.164.163',
+ '118.69.164.148',
+ '118.69.164.160',
+ '118.69.164.158',
+ '118.69.164.168',
+ '118.69.164.169',
+ '118.69.215.70',
+ '118.69.164.156',
+ '118.69.164.143',
+ '118.69.164.170',
+ '118.69.164.152',
+ '118.69.164.167']
+```
+
+To limit download traffic from Fshare to 10Mbit, add this line to crontab:
+```
+0 9 * * 1-5 ./scripts/rate_limit.py fshare -rate 10
+```
+_**Notes: The rate given in the command is the total amount of bandwidth, which means 5Mbit here will be shared for all users who download files from Fshare.**_

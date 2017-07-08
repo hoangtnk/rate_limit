@@ -13,7 +13,7 @@ Assign execute permission to the script:
 # chmod a+x rate_limit.py
 ```
 
-Show available options:
+Show the available options:
 ```
 # ./rate_limit.py --help
 usage: rate_limit.py [-h] [-rate] name
@@ -28,7 +28,7 @@ optional arguments:
   -rate       rate at which to limit traffic (mbit)
 ```
 
-Inside the code, I set the timeout for sniff function to 32400 seconds (9 hours), with the purpose of schedule the script to run at 9:00 every morning. Therefore, we only rate limit traffic during working hours (from 9:00 to 18:00).
+Inside the code, I set the timeout for sniff function to 32400 seconds (9 hours), with the purpose of schedule the script to run at 9:00 every morning. As a result, we only rate limit traffic during working hours (from 9:00 to 18:00).
 
 If you just want to collect IP addresses of Fshare servers, type **crontab -e** and add this line to the file:
 ```

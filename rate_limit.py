@@ -24,11 +24,14 @@ try:
 except ImportError:
     sys.exit("Scapy module has not been installed on this system.\nDownload it from https://pypi.python.org/pypi/scapy and try again.")
 
+    
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 logging.getLogger("scapy.interactive").setLevel(logging.ERROR)
 logging.getLogger("scapy.loading").setLevel(logging.ERROR)
 
+
 added_ip = []  # list of IPs have been added to tc filter
+
 
 def name_to_ip(pkt):
    
@@ -74,6 +77,7 @@ def name_to_ip(pkt):
             except IndexError:
                 pass
 
+            
 def main():
    
     """ Main function """
@@ -121,5 +125,6 @@ def main():
             subprocess.Popen(["tc", "qdisc", "del", "dev", "bond1", "root"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT).wait()
         sys.exit("All tc rules have been removed.")
 
+        
 if __name__ == "__main__":
     main()

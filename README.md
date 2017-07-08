@@ -57,4 +57,4 @@ To limit download traffic from Fshare to 10Mbit, add this line to crontab:
 ```
 0 9 * * 1-5 ./scripts/rate_limit.py fshare -rate 10
 ```
-_**Notes: The rate given in the command is the total amount of bandwidth, which means 5Mbit here will be shared for all users who download files from Fshare.**_
+_**Notes: The rate value given in the command is the total amount of bandwidth allocated for Fshare, which means 10Mbit here will be shared for all users who download files from Fshare.**_

@@ -1,5 +1,5 @@
 # Description
-This script is generally used to rate limit traffic from certain IPs based on its domain name. Specifically, it is written to limit download traffic from Fshare (a popular storage provider in Vietnam). It's using [scapy](https://pypi.python.org/pypi/scapy) to capture DNS traffic and [Linux HTB](http://lartc.org/manpages/tc-htb.html) for traffic control. Feel free to modify the code to suit your needs.
+This script is generally used to rate limit traffic from certain IPs based on its domain name. Specifically, it is used to limit download traffic from Fshare (a popular storage provider in Vietnam). It's using [scapy](https://pypi.python.org/pypi/scapy) to capture DNS traffic and [Linux HTB](http://lartc.org/manpages/tc-htb.html) for traffic control. Feel free to modify the code to suit your needs.
 
 # Installation
 Install the scapy module:
